@@ -1,0 +1,10 @@
+websocket与http比较
+
+http协议，底层是TCP连接，一个request对应一个response。request 只能由client发起，server端回应。
+http 1.0 client发起一个request，server端返回一个response，一个http连接周期结束。
+http 1.1 增加了keep-alive,一个http连接周期中，可以发送多个request，接受多个response。但每一个request只能有一个response，并且response是被动的，不能主动发起。
+
+websocket是html5新加的协议，又名长连接，底层是TCP连接。
+websocket不是http协议，http只负责建立websocket连接。
+websocket能够在浏览器和服务器之间建立双向连接，以基于事件的方式，赋予浏览器实时通信能力。
+ws是双向通信，服务器和客户端可以同时发送并响应请求。
