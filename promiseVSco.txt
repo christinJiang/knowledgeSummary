@@ -1,0 +1,15 @@
+Promise, co
+ES6 promise, bluebird promise, request-promise 比较
+Bluebird 号称是所有promise库里运行速度最快的
+ES6 promise，做的仅仅是把promise封装进javascript标准库，这样就不需要依赖第三方库
+
+co是es6的语法，使异步操作的promise变成同步执行。
+co函数返回一个Promise对象，因此可以用then方法添加回调函数。
+
+co(function *() {
+  try{
+    yield promiseFunction();
+  } catch(e) {
+  
+  }
+});
