@@ -1,0 +1,84 @@
+Autoprefixer解析CSS, 并且根据需要添加浏览器前缀到CSS规则中。
+现在流行的浏览器内核主要有：
+Trident内核：主要代表为IE浏览器
+Gecko内核：主要代表为Firefox
+Presto内核：主要代表为Opera
+Webkit内核：产要代表为Chrome和Safari
+
+不同内核的浏览器，CSS3属性（部分需要添加前缀的属性）对应需要添加不同的前缀，也将其称之为浏览器的私有前缀。
+添加上私有前缀之后的CSS3属性可以说是对应浏览器的私有属性：
+Trident内核：前缀为-ms
+Gecko内核：前缀为-moz
+Presto内核：前缀为-o
+Webkit内核：前缀为-webkit
+myProject/component.vue
+<el-input v-model='filterDomain' id="searchText" @keyup.enter.native="onSearchEnter" @blur="onSearchBlur"
+          :class="{searchInputShow:searchShow, searchInputHide:!searchShow}" class="limitWidth" placeholder="输入域名进行搜索" :maxlength='100'>
+  <div slot="append"><i class="iconfont icon-searchx" @click='getlistData(true)'></i></div>
+</el-input>
+
+myProject/.postcssrc.js
+module.exports = {
+  "plugins": {
+    "autoprefixer": {}
+  }
+}
+
+// 兼容所有浏览器往前的50个版本
+module.exports = {
+  "plugins": {
+    // to edit target browsers: use "browserslist" field in package.json
+    "autoprefixer": {browsers:['last 50 version']}
+  }
+}
+myProject/.postcssrc.js
+module.exports = {
+  "plugins": {
+    "autoprefixer": {}
+  }
+}
+
+引入autoprefixer之前需写的CSS：
+@keyframes searchTextOpen
+{
+  from {
+    width: 0px;
+    margin-left: 100%;
+    border: none;
+    padding: 0;
+  }
+  to {
+    background: rgba(61,112,178,0.10);
+    width: 100%;
+    margin-left: 0;
+    padding: 6px 12px;
+  }
+}
+@-moz-keyframes searchTextOpen /* Firefox */
+{
+...
+}
+@-webkit-keyframes searchTextOpen /* Safari 和 Chrome */
+{
+...
+}
+@-o-keyframes searchTextOpen /* Opera */
+{
+...
+}
+引入autoprefixer之后需写的CSS：
+@keyframes searchTextOpen
+{
+  from {
+    width: 0px;
+    margin-left: 100%;
+    border: none;
+    padding: 0;
+  }
+  to {
+    background: rgba(61,112,178,0.10);
+    width: 100%;
+    margin-left: 0;
+    padding: 6px 12px;
+  }
+}
