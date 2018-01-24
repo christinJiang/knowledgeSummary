@@ -1,0 +1,12 @@
+矢量图转成class引用，基于iconfont
+
+Steps:
+1.登录 http://iconfont.cn/
+2.点击 上传按钮 ，上传矢量图。
+3.对于上传的矢量图从新命名，选择去除颜色并提交
+4.选择图片管理 -> 我的图标，  全选， 批量加入购物车
+5.点击购物车，添加至项目，选择 CDN，并确认。
+6.选择图标管理 -> 我的项目， 点击下载至本地
+7.解压缩download.zip，得到10个文件，打开demo_fontclass.html
+8.每个图标有具体的名字，可通过class引入并使用。 <i class="iconfont icon-refreshx"></i>
+9.每添加一个新的矢量图，需要重新生产所有的10个文件，并且整体替换oss-cdn-portal/src/assets/css/iconfont 中的所有文件
