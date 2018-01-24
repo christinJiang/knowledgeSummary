@@ -1,0 +1,39 @@
+解决浏览器兼容性问题 -- 动画渲染
+
+
+点击搜索按钮，文本框会向左展开，并获取焦点。
+
+myProject/component.vue
+<el-input :class="{searchInputShow:searchShow, searchInputHide:!searchShow}"'>
+</el-input>
+1.第一次渲染
+向左展开设置了动画，周期是0.5s
+.searchInputShow .el-input__inner{
+  animation: searchTextOpen 0.5s;
+  animation-fill-mode:forwards;
+}
+@keyframes searchTextOpen
+{
+  from {
+    background:#fff;
+    width: 0px;
+    margin-left: 100%;
+    border: none;
+    padding: 0;
+  }
+  to {
+    background: rgba(61,112,178,0.10);
+    width: 100%;
+    margin-left: 0;
+    padding: 6px 12px;
+  }
+}
+2.第二次渲染
+文本框设置焦点。
+document.getElementById('searchText').focus();
+以上code在Chrome和Firefox上运行良好，唯独Safari获取不到焦点。原因是Safari在第一次渲染没有完成前，已经执行了第二次渲染，导致焦点的渲染丢失。
+解决办法：
+设置延时，第二次渲染在第一次渲染结束后再执行，即0.6秒后才开始执行。
+setTimeout(() => {
+  document.getElementById('searchText').focus();
+}, 600);
